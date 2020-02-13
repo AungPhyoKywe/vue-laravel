@@ -29,4 +29,5 @@
 
 `` php artisan serve ``
 
-![Test Image 4](https://github.com/tograh/testrepository/3DTest.png)
+### ![Test Image 4]
+<img src="https://github.com/AungPhyoKywe/Vue-Laravel/blob/master/Screen%20Shot%202020-02-13%20at%205.26.14%20PM.png">
