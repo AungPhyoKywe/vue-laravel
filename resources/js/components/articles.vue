@@ -10,14 +10,14 @@
                 <div class="col-sm-6">
                     <label>Image Upload :</label><br>
 
-                    <div style="border-style: solid;border-width: thin;width: 360px;height: 150px;">
+                    <div style="border-style: solid;border-width: thin;width: 365px;height: 155px;">
 
                         <img v-if="url" :src="url" style="border:1px;width: 360px;height: 150px;border-bottom-color: #0c525d"alt="..." class="rounded" />
 
                     </div>
                     <br>
-                    <input class="btn-sm btn-light" style="overflow: hidden" type="file" size="10" @change="onFileChange" />
-                    <br>
+                    <input class="btn btn-outline-light" style="overflow: hidden" type="file" size="100" @change="onFileChange" />
+                    <br><br>
                 </div>
                 <div class="col-6">
                     <label>Article Name </label>

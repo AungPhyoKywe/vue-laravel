@@ -10683,8 +10683,8 @@ var render = function() {
                 staticStyle: {
                   "border-style": "solid",
                   "border-width": "thin",
-                  width: "360px",
-                  height: "150px"
+                  width: "365px",
+                  height: "155px"
                 }
               },
               [
@@ -10706,12 +10706,13 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c("input", {
-              staticClass: "btn-sm btn-light",
+              staticClass: "btn btn-outline-light",
               staticStyle: { overflow: "hidden" },
-              attrs: { type: "file", size: "10" },
+              attrs: { type: "file", size: "100" },
               on: { change: _vm.onFileChange }
             }),
             _vm._v(" "),
+            _c("br"),
             _c("br")
           ]),
           _vm._v(" "),
