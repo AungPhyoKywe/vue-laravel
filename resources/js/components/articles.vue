@@ -6,7 +6,15 @@
             <div class="row">
                 <div class="col-6">
                     <label>Article Name </label>
-                    <input type="text"id="articles" class="form-control" v-model="article.name">
+                    <input type="text"id="articles" class="form-control" v-model="article.name"><br>
+                    <strong>Image Upload</strong><br>
+                    <input  type="file" @change="onFileChange" />
+
+                    <div id="preview">
+                        <img v-if="url" :src="url" style="width: 150px;height: 150px;border-bottom-color: #0c525d" />
+                    </div>
+
+                    <br><br>
                 </div>
                 <div class="col-6">
                      <label>Add Posts </label>
@@ -37,6 +45,7 @@
 
         data() {
             return {
+                url: null,
                 inputs: [
                     {
                         name: ''
@@ -74,6 +83,10 @@
                                  console.log(response)
                             })
                    // }
+            },
+            onFileChange(e) {
+                const file = e.target.files[0];
+                this.url = URL.createObjectURL(file);
             }
 
         }

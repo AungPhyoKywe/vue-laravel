@@ -2166,10 +2166,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      url: null,
       inputs: [{
         name: ''
       }],
@@ -2204,6 +2213,10 @@ __webpack_require__.r(__webpack_exports__);
         alert('Success add Artist');
         console.log(response);
       }); // }
+    },
+    onFileChange: function onFileChange(e) {
+      var file = e.target.files[0];
+      this.url = URL.createObjectURL(file);
     }
   } //     return {
   //         inputs: [
@@ -3187,7 +3200,32 @@ var render = function() {
                   _vm.$set(_vm.article, "name", $event.target.value)
                 }
               }
-            })
+            }),
+            _c("br"),
+            _vm._v(" "),
+            _c("strong", [_vm._v("Image Upload")]),
+            _c("br"),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "file" },
+              on: { change: _vm.onFileChange }
+            }),
+            _vm._v(" "),
+            _c("div", { attrs: { id: "preview" } }, [
+              _vm.url
+                ? _c("img", {
+                    staticStyle: {
+                      width: "150px",
+                      height: "150px",
+                      "border-bottom-color": "#0c525d"
+                    },
+                    attrs: { src: _vm.url }
+                  })
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _c("br")
           ]),
           _vm._v(" "),
           _c(
