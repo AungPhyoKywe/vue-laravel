@@ -1982,7 +1982,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       inputs: [{
-        name: ''
+        name: '',
+        description: ''
       }],
       users: [],
       article: {
@@ -1996,6 +1997,7 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8000/api/edit/".concat(this.$route.params.id)).then(function (res) {
       //console.log(response);
       _this.users = res.data[0];
+      _this.inputs = res.data;
       console.log(_this.users);
     });
   },
@@ -2888,19 +2890,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: input.name,
-                        expression: "input.name"
+                        value: input.description,
+                        expression: "input.description"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: { type: "text" },
-                    domProps: { value: input.name },
+                    domProps: { value: input.description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(input, "name", $event.target.value)
+                        _vm.$set(input, "description", $event.target.value)
                       }
                     }
                   }),

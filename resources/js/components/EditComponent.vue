@@ -12,7 +12,7 @@
                     <label>Add Posts </label>
                     <div class="form-group" v-for="(input,k) in inputs" :key="k">
 
-                        <input type="text" class="form-control" v-model="input.name">
+                        <input type="text" class="form-control" v-model="input.description">
                         <span>
             <i class="btn-sm btn-danger" @click="remove(k)" v-show="k || ( !k && inputs.length > 1)">remove</i>
             <i class="btn-sm btn-success" @click="add(k)" v-show="k == inputs.length-1">add</i>
@@ -39,7 +39,8 @@
             return {
                 inputs: [
                     {
-                        name: ''
+                        name: '',
+                        description:'',
                     }
                 ],
                 users: [],
@@ -54,6 +55,7 @@
                 .then(res => {
                     //console.log(response);
                     this.users = res.data[0];
+                    this.inputs =res.data;
                     console.log(this.users);
             });
 

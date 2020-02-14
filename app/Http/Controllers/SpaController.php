@@ -57,6 +57,7 @@ class SpaController extends Controller
         $post=DB::table('articles')
             ->leftJoin('posts','articles.id','=','posts.articles_id')
             ->where('articles.id',$id)->get();
+
         return $post;
     }
 }
