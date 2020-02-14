@@ -10,7 +10,7 @@
                     <strong>Image Upload</strong><br>
                     <input  type="file" @change="onFileChange" />
 
-                    <div id="preview">
+                    <div>
                         <img v-if="url" :src="url" style="width: 150px;height: 150px;border-bottom-color: #0c525d" />
                     </div>
 
@@ -44,7 +44,12 @@
     export  default {
 
         data() {
+
             return {
+                styleObject: {
+                    color: 'red',
+                    fontSize: '13px'
+                },
                 url: null,
                 inputs: [
                     {
@@ -69,9 +74,9 @@
                 this.inputs.splice(index, 1);
             },
                 addPost(index){
-                    this.article.push({ name: '' });
+
                     let el = document.getElementById("articles");
-                    //for(var i=0;i<this.inputs.length;i++) {
+
                         axios.post('./api/posts/create', {
 
                             name:el.value,
@@ -82,7 +87,7 @@
                                 alert('Success add Artist')
                                  console.log(response)
                             })
-                   // }
+
             },
             onFileChange(e) {
                 const file = e.target.files[0];
@@ -91,82 +96,6 @@
 
         }
 
-        //     return {
-        //         inputs: [
-        //             {
-        //                 name: ''
-        //             }
-        //         ],
-        //         articles: [],
-        //         article: {
-        //             id: '',
-        //             name: '',
-        //             age: '',
-        //         },
-        //         pagination: {},
-        //         edit: false,
-        //
-        //     };
-        // },
-        // created() {
-        //
-        //     this.FetchAPI();
-        //     this.add();
-        //     this.remove();
-        // },
-        // methods: {
-        //     add(index) {
-        //         this.inputs.push({ name: '' });
-        //     },
-        //     remove(index) {
-        //         this.inputs.splice(index, 1);
-        //     },
-        //     FetchAPI(page_url) {
-        //         let vm = this;
-        //         page_url = page_url || '/api/person';
-        //
-        //         fetch(page_url)
-        //             .then(res => res.json())
-        //             .then(res => {
-        //                 this.articles = res.data;
-        //                 vm.makePagination(res.meta, res.links);
-        //             })
-        //
-        //     },
-        //     makePagination(meta, links) {
-        //         let pagination = {
-        //             current_page: meta.current_page,
-        //             last_page: meta.last_page,
-        //             next_page: links.next,
-        //             prev_page: links.prev,
-        //
-        //         }
-        //         this.pagination = pagination;
-        //
-        //     },
-        //     AddArticle() {
-        //
-        //         axios.post('/person/create', {
-        //             name:this.article.name,
-        //             age: this.article.age,
-        //         })
-        //             .then(response => {
-        //                 this.articles = response.data;
-        //                 this.push(this.articles);
-        //             })
-        //             .catch(error => {
-        //                 console.log(error.response)
-        //             });
-        //
-        //     }
-        //
-        // },
-        // deleteArticls(id) {
-        //     let uri = `http://localhost:8000/api/person/${id}`;
-        //     this.axios.delete(uri).then(response => {
-        //         this.articles.splice(this.articles.indexOf(id), 1);
-        //     });
-        // }
 
     }
 </script>

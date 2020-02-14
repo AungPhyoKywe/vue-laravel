@@ -2178,6 +2178,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      styleObject: {
+        color: 'red',
+        fontSize: '13px'
+      },
       url: null,
       inputs: [{
         name: ''
@@ -3211,7 +3215,7 @@ var render = function() {
               on: { change: _vm.onFileChange }
             }),
             _vm._v(" "),
-            _c("div", { attrs: { id: "preview" } }, [
+            _c("div", [
               _vm.url
                 ? _c("img", {
                     staticStyle: {
