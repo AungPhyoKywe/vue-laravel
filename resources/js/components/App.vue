@@ -9,6 +9,7 @@
         </nav>
 
         <p>
+
             <router-link :to="{ name: 'home' }">Home</router-link> |
             <router-link :to="{ name: 'create' }">Create</router-link>
 <!--            <router-link :to="{ name: 'edit' }">Edit</router-link>-->

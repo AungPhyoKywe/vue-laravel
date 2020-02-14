@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from "vue-resource"
+import { VueSpinners } from '@saeris/vue-spinners'
+
+Vue.use(VueSpinners)
 Vue.use(VueResource);
 Vue.use(VueRouter);
 
@@ -9,6 +12,7 @@ import Hello from './components/Hello'
 import Home from './components/Home'
 import Edit from './components/EditComponent'
 import articles from "./components/articles";
+import loading from "./components/loading";
 
 const router = new VueRouter({
     mode: 'history',
@@ -42,6 +46,9 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
+    data:{
+        loading:true
+    },
     components: { App },
     router,
 });

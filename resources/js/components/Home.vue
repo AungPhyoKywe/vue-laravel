@@ -18,7 +18,12 @@
             </tr>
 
        </table>
-
+       <div class="vld-parent">
+           <loading :active.sync="isLoading"
+                    :can-cancel="true"
+                    :on-cancel="onCancel"
+                    :is-full-page="fullPage"></loading>
+       </div>
        <nav aria-label="Page navigation example">
            <ul class="pagination">
                <li v-bind:class="[{disabled: !pagination.prev_page}]" v-on:click="fetchData(pagination.prev_page)" class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -30,10 +35,14 @@
 </template>
 <script>
     import axios from 'axios';
+    import Loading from 'vue-loading-overlay';
+    // Import stylesheet
+    import 'vue-loading-overlay/dist/vue-loading.css';
     export default {
         data() {
             return {
-                loading: false,
+                isLoading: false,
+                fullPage: true,
                 users: [],
                 error: null,
                 pagination:{},
@@ -44,26 +53,39 @@
         created() {
             this.fetchData();
         },
+        components: {
+            Loading
+        },
         methods: {
             fetchData(pageUrl) {
                 let vm =this;
                 pageUrl=pageUrl ||'/api/posts'
                 this.error = this.users = null;
-                this.loading = true;
+                this.isLoading = true;
+                // simulate AJAX
+                setTimeout(() => {
+                    this.isLoading = false
+                },1000);
                 axios
                     .get(pageUrl)
                     .then(res => {
-                        //console.log(response);
                         this.users = res.data.data;
-                        //console.log(res.data.links);
                         vm.makePagination(res.data.meta,res.data.links);
                     });
             },
             deleteArticls(id,index) {
                 let uri = `http://localhost:8000/api/posts/${id}`;
-                axios.delete(uri).then(response => {
-                    this.users.splice(index, 1);
-                });
+                if (confirm('are you sure?'))
+                {
+                    this.isLoading = true;
+                    // simulate AJAX
+                    setTimeout(() => {
+                        this.isLoading = false
+                    },1000);
+                    axios.delete(uri).then(response => {
+                        this.users.splice(index, 1);
+                    });
+                }
             },
             makePagination(meta, links) {
                 let pagination = {

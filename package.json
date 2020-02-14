@@ -24,11 +24,13 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@saeris/vue-spinners": "^1.0.8",
         "babel-loader": "^8.0.6",
         "bootstrap-vue": "^2.4.0",
         "vform": "^1.0.1",
         "vue-axios": "^2.1.5",
         "vue-loader": "^15.8.3",
+        "vue-loading-overlay": "^3.2.0",
         "vue-resource": "^1.5.1",
         "vue-router": "^3.1.5"
     }

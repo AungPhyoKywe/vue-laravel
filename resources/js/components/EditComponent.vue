@@ -83,6 +83,7 @@
 
                 ).then((response) => {
                     alert('Success Updated');
+                    window.location.href='/';
                     console.log(response);
                 });
             }

@@ -24,6 +24,7 @@
                 <span>
             <i class="btn-sm btn-danger" @click="remove(k)" v-show="k || ( !k && inputs.length > 1)">remove</i>
             <i class="btn-sm btn-success" @click="add(k)" v-show="k == inputs.length-1">add</i>
+
                 </span>
             </div>
                 </div>
@@ -41,11 +42,15 @@
 
 <script>
     import axios from 'axios';
+    import { BarLoader } from '@saeris/vue-spinners'
     export  default {
 
         data() {
 
             return {
+                components: {
+                    BarLoader
+                },
                 styleObject: {
                     color: 'red',
                     fontSize: '13px'
@@ -84,8 +89,10 @@
 
                         })
                             .then((response) => {
-                                alert('Success add Artist')
-                                 console.log(response)
+                                window.location.href='/';
+                                alert('Success add Artist');
+                                 console.log(response);
+
                             })
 
             },
