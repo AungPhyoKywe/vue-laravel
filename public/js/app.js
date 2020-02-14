@@ -8979,6 +8979,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _saeris_vue_spinners__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @saeris/vue-spinners */ "./node_modules/@saeris/vue-spinners/lib/@saeris/vue-spinners.common.js");
 /* harmony import */ var _saeris_vue_spinners__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_saeris_vue_spinners__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -9021,14 +9025,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+ // Import stylesheet
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      components: {
-        BarLoader: _saeris_vue_spinners__WEBPACK_IMPORTED_MODULE_1__["BarLoader"]
-      },
+      isLoading: false,
+      fullPage: true,
       styleObject: {
         color: 'red',
         fontSize: '13px'
@@ -9041,6 +9058,9 @@ __webpack_require__.r(__webpack_exports__);
         name: 'ddd'
       }]
     };
+  },
+  components: {
+    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   methods: {
     add: function add(index) {
@@ -9056,7 +9076,14 @@ __webpack_require__.r(__webpack_exports__);
       this.inputs.splice(index, 1);
     },
     addPost: function addPost(index) {
+      var _this = this;
+
       var el = document.getElementById("articles");
+      this.isLoading = true; // simulate AJAX
+
+      setTimeout(function () {
+        _this.isLoading = false;
+      }, 1000);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('./api/posts/create', {
         name: el.value,
         posts: this.inputs
@@ -10646,54 +10673,45 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6" }, [
-            _c("label", [_vm._v("Article Name ")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.article.name,
-                  expression: "article.name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "articles" },
-              domProps: { value: _vm.article.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.article, "name", $event.target.value)
-                }
-              }
-            }),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("label", [_vm._v("Image Upload :")]),
             _c("br"),
             _vm._v(" "),
-            _c("strong", [_vm._v("Image Upload")]),
+            _c(
+              "div",
+              {
+                staticStyle: {
+                  "border-style": "solid",
+                  "border-width": "thin",
+                  width: "360px",
+                  height: "150px"
+                }
+              },
+              [
+                _vm.url
+                  ? _c("img", {
+                      staticClass: "rounded",
+                      staticStyle: {
+                        border: "1px",
+                        width: "360px",
+                        height: "150px",
+                        "border-bottom-color": "#0c525d"
+                      },
+                      attrs: { src: _vm.url, alt: "..." }
+                    })
+                  : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
             _c("br"),
             _vm._v(" "),
             _c("input", {
-              attrs: { type: "file" },
+              staticClass: "btn-sm btn-light",
+              staticStyle: { overflow: "hidden" },
+              attrs: { type: "file", size: "10" },
               on: { change: _vm.onFileChange }
             }),
             _vm._v(" "),
-            _c("div", [
-              _vm.url
-                ? _c("img", {
-                    staticStyle: {
-                      width: "150px",
-                      height: "150px",
-                      "border-bottom-color": "#0c525d"
-                    },
-                    attrs: { src: _vm.url }
-                  })
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("br"),
             _c("br")
           ]),
           _vm._v(" "),
@@ -10701,6 +10719,31 @@ var render = function() {
             "div",
             { staticClass: "col-6" },
             [
+              _c("label", [_vm._v("Article Name ")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.article.name,
+                    expression: "article.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "articles" },
+                domProps: { value: _vm.article.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.article, "name", $event.target.value)
+                  }
+                }
+              }),
+              _c("br"),
+              _vm._v(" "),
               _c("label", [_vm._v("Add Posts ")]),
               _vm._v(" "),
               _vm._l(_vm.inputs, function(input, k) {
@@ -10771,7 +10814,28 @@ var render = function() {
                     )
                   ])
                 ])
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "vld-parent" },
+                [
+                  _c("loading", {
+                    attrs: {
+                      active: _vm.isLoading,
+                      "can-cancel": true,
+                      "on-cancel": _vm.onCancel,
+                      "is-full-page": _vm.fullPage
+                    },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.isLoading = $event
+                      }
+                    }
+                  })
+                ],
+                1
+              )
             ],
             2
           )
