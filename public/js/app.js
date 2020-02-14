@@ -2013,13 +2013,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     remove: function remove(index) {
       this.inputs.splice(index, 1);
-    } // updatePost() {
-    //     let uri = `http://vuelaravelcrud.test/api/post/update/${this.$route.params.id}`;
-    //     this.axios.post(uri, this.post).then((response) => {
-    //         this.$router.push({name: 'posts'});
-    //     });
-    // }
-
+    },
+    updatePost: function updatePost() {
+      var el = document.getElementById("articles");
+      var uri = "http://localhost:8000/api/posts/update/".concat(this.$route.params.id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(uri, {
+        name: el.value,
+        posts: this.inputs
+      }).then(function (response) {
+        alert('Success Updated');
+        console.log(response);
+      });
+    }
   }
 });
 
@@ -2845,7 +2850,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.addPost($event)
+            return _vm.updatePost($event)
           }
         }
       },

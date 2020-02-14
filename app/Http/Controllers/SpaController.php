@@ -60,4 +60,24 @@ class SpaController extends Controller
 
         return $post;
     }
+    public function update(Request $request,$id)
+    {
+        $articles=Post::find($id);
+        $articles->name=$request->name;
+        $articles->update();
+
+        //delete all posts by article id
+
+        $post=postes::where('articles_id',$id)->delete();
+
+        for($i = 0;$i<count($request->posts);$i++)
+        {
+            $post=new postes();
+            $post->articles_id=$id;
+            $post->description=$request->posts[$i]['description'];
+            $post->save();
+        }
+
+        return response()->json(['message' => $request->posts]);
+    }
 }

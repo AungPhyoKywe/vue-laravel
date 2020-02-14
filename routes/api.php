@@ -21,3 +21,4 @@ Route::get('/posts', 'SpaController@getData');
 Route::get('/edit/{id}','SpaController@edit');
 Route::post('/posts/create', 'SpaController@store');
 Route::delete('/posts/{id}','SpaController@destroy');
+Route::post('/posts/update/{id}','SpaController@update');

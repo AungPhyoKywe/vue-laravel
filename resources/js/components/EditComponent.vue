@@ -1,12 +1,12 @@
 <template>
     <div class="container-sm">
         <br><br>
-        <form @submit.prevent="addPost">
+        <form @submit.prevent="updatePost">
 
             <div class="row">
                 <div class="col-6">
                     <label>Article Name </label>
-                    <input type="text"id="articles" class="form-control" v-model="users.name">
+                    <input type="text" id="articles" class="form-control" v-model="users.name">
                 </div>
                 <div class="col-6">
                     <label>Add Posts </label>
@@ -70,12 +70,22 @@
             remove(index) {
                 this.inputs.splice(index, 1);
             },
-            // updatePost() {
-            //     let uri = `http://vuelaravelcrud.test/api/post/update/${this.$route.params.id}`;
-            //     this.axios.post(uri, this.post).then((response) => {
-            //         this.$router.push({name: 'posts'});
-            //     });
-            // }
+            updatePost() {
+                let el = document.getElementById("articles");
+                let uri = `http://localhost:8000/api/posts/update/${this.$route.params.id}`;
+                axios.post(uri, {
+
+                        name:el.value,
+                        posts:this.inputs
+
+                    }
+
+
+                ).then((response) => {
+                    alert('Success Updated');
+                    console.log(response);
+                });
+            }
         }
     }
 </script>
